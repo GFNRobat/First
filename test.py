@@ -20,6 +20,17 @@ bin_tabelle = {
     "0": 0,
     "1": 1,
 }
+oct_tablle = {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+}
 
 def umwandeln_2(zahl, basis):
     zahl = zahl.upper()                 # Eingabe zu uppercase
