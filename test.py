@@ -40,6 +40,8 @@ def umwandeln_2(zahl, basis):
         tab = bin_tabelle
     elif basis == 16:
         tab = hex_tabelle
+    elif basis == 8:
+        tab = oct_tabelle
     else: fail = 1                      # Fehlercode 1 = keine Tabelle für Basis -> break
     for i in range(len(zahl)):
         if fail == 1:                   
@@ -59,3 +61,4 @@ umwandeln_2("28ff", 16)
 umwandeln_2("10110110", 2)
 umwandeln_2("100121", 2)
 umwandeln_2("12212", 3)
+umwandeln_2("823", 8)
