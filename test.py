@@ -35,7 +35,7 @@ def umwandeln_2():
         if zahl[i] not in tabelle or tabelle[zahl[i]]>basis-1:        
             fail = 1
             break
-        elif basis <= 2 or basis > 16:
+        elif basis < 2 or basis > 16:
             fail = 2
             break
         dec += basis**(len(zahl)-i-1)*(tabelle[zahl[i]])
@@ -51,7 +51,7 @@ window = tkinter.Tk()
 window.title("Umrechner")
 window.resizable(bool(0), bool(0))
 
-lbInput = tkinter.Label(window, text="Bitte Zahl eingeben:")
+lbInput = tkinter.Label(window, text="Bitte Zahl und Basis eingeben:")
 lbInput.grid(row=0, column=0, sticky="w", padx=5, pady=5)
 
 input_z = tkinter.Entry(window, width=30)
