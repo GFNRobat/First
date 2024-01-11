@@ -1,3 +1,5 @@
+import tkinter, tkinter.messagebox
+
 tabelle = {
     "0": 0,
     "1": 1,
@@ -15,28 +17,53 @@ tabelle = {
     "D": 13,
     "E": 14,
     "F": 15,
+    "a": 10,
+    "b": 11,
+    "c": 12,
+    "d": 13,
+    "e": 14,
+    "f": 15,
 }
 
-def umwandeln_2(zahl, basis):
-    zahl = zahl.upper()                 # Eingabe zu uppercase
+def umwandeln_2():
+    zahl = input_z.get()
+    basis = int(input_b.get())              
     dec = 0
-    fail = 0                            # Variable für Fehlercode
-    
+    fail = 0                                   # Variable für Fehlercode
+
     for i in range(len(zahl)):
-        if zahl[i] not in tabelle:        
-            fail = 3
-        elif tabelle[zahl[i]]>basis-1:
-            fail = 3
+        if zahl[i] not in tabelle or tabelle[zahl[i]]>basis-1:        
+            fail = 1
+            break
+        elif basis <= 2 or basis > 16:
+            fail = 2
             break
         dec += basis**(len(zahl)-i-1)*(tabelle[zahl[i]])
     if fail == 0:                       # Ausgabe je nach Fehlercode (0 = Ausgabe Ergebnis)
-        print(dec)
-    else:
-        print("Ungültige Eingabe für Basis " + str(basis))
+        lbOutput["text"] = str(dec)
+    elif fail == 1:
+        lbOutput["text"]=("Ungültige Eingabe für Basis " + str(basis))
+    elif fail == 2:
+        lbOutput["text"]=("Bitte gültige Basis angeben")        
 
-umwandeln_2("28ff", 16)
-umwandeln_2("10110110", 2)
-umwandeln_2("100121", 2)
-umwandeln_2("12212", 3)
-umwandeln_2("823", 8)
-print("Hallo du Dulli")
+
+window = tkinter.Tk()
+window.title("Umrechner")
+window.resizable(bool(0), bool(0))
+
+lbInput = tkinter.Label(window, text="Bitte Zahl eingeben:")
+lbInput.grid(row=0, column=0, sticky="w", padx=5, pady=5)
+
+input_z = tkinter.Entry(window, width=30)
+input_z.grid(row=1, column=0, sticky="w",padx=5, pady=5)
+
+input_b = tkinter.Entry(window, width=30)
+input_b.grid(row=2, column=0, sticky="w",padx=5, pady=5)
+
+ok = tkinter.Button(window, text="GO", command=umwandeln_2, width=10)
+ok.grid(row=3, column=0, sticky="w",padx=5, pady=5)
+
+lbOutput = tkinter.Label(window, text="", bg="yellow", width=30)
+lbOutput.grid(row=4, column=0, sticky="w", padx=5, pady=5)
+
+window.mainloop()
